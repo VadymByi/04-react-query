@@ -7,7 +7,7 @@ import MovieModal from "../MovieModal/MovieModal";
 import Loader from "./../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { fetchMovies } from "../../services/movieService";
-import type { Movie, MoviesResponse } from "../../types/movie";
+import type { Movie } from "../../types/movie";
 import toast, { Toaster } from "react-hot-toast";
 import ReactPaginate from "react-paginate";
 
@@ -16,7 +16,7 @@ export default function App() {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { data, isLoading, isError } = useQuery<MoviesResponse>({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["movies", searchQuery, page],
     queryFn: () => fetchMovies(searchQuery, page),
     enabled: searchQuery.length > 0,
